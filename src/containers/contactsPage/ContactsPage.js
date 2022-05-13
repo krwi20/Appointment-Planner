@@ -28,7 +28,7 @@ export const ContactsPage = ({ contacts, addContact }) => {
       return false;
     };
 
-    if (nameIsDuplicate) {
+    if (nameIsDuplicate()) {
       setDuplicate(true);
     } else {
       setDuplicate(false);
@@ -36,9 +36,12 @@ export const ContactsPage = ({ contacts, addContact }) => {
   }, [name, contacts, duplicate]);
 
   return (
-    <div>
+    <>
       <section>
-        <h2>Add Contact {duplicate ? " - Name Already Exists" : ""}</h2>
+        <h2>
+          Add Contact
+          {duplicate ? " - Name Already Exists" : ""}
+        </h2>
         <ContactForm
           name={name}
           setName={setName}
@@ -54,6 +57,6 @@ export const ContactsPage = ({ contacts, addContact }) => {
         <h2>Contacts</h2>
         <TileList tiles={contacts} />
       </section>
-    </div>
+    </>
   );
 };
